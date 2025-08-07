@@ -169,6 +169,7 @@ CS_MENU_LED_Update_LFO_Cont
 	;; SID led activity
 	movf	CS_MENU_SELECTED_SID_FLAGS, W
 	xorwf	SID_ACTIVITY_FLAGS, W	; XOR for blinking
+	andlw	0x0f
 	movwf	TMP6
 
 	;; go through the DOUT map
