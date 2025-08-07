@@ -14,8 +14,7 @@ GPASM_DEFINES =
 
 # default rule that defines the .hex files which should be created
 # note: always require a "cleanall", since dependencies (e.g. on .h and .inc files) are not properly declared
-#all: cleanall setup_ron_quad_sid.hex setup_ron_single_sid.hex setup_8580.hex  sid_filter_table.hex
-all: cleanall setup_ron_quad_sid.hex setup_ron_single_sid.hex
+all: cleanall setup_ron_quad_sid.hex
 
 # for a separate build
 sid_filter_table:

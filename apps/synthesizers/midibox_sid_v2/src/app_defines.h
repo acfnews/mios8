@@ -140,8 +140,10 @@ CS_MENU_LABEL_CTR	EQU	0x058	; counter for printing label piecewise
 CS_MENU_ENGINES         EQU     0x059   ; stored engine codes (2 bit for each SID)
 
 SID_ACTIVITY_FLAGS	EQU	0x05a	; 1 byte for 4 SIDs
+TMP6			EQU	0x05b	; SID LED blink value
+TMP7			EQU	0x05c	; FLAG number in DOUT loop
 
-	;; free: 0x5b-0x5f
+	;; free: 0x5d-0x5f
 
 ;; ==========================================================================
 ;; NOTE for PIC18F4685: 0x60-0x7f NOT directly accessible via ACCESS bank!
