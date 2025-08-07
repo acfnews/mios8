@@ -170,7 +170,7 @@ CS_MENU_LED_Update_LFO_Cont
 	movf	CS_MENU_SELECTED_SID_FLAGS, W
 	xorwf	SID_ACTIVITY_FLAGS, W	; XOR for blinking
 	andlw	0x0f
-	movwf	TMP6
+	movwf	CS_SID_LED_BLINK_VALUE
 
 	;; go through the DOUT map
 	TABLE_ADDR CS_MENU_DOUT_TABLE
@@ -189,16 +189,16 @@ CS_MENU_LED_Update_Loop
 	movwf	TMP7
 	movlw	0x04
 	subwf	TMP7, W
-	bnc	CS_MENU_LED_Update_UseTMP6
+	bnc	CS_MENU_LED_Update_Use_CS_SID_LED_BLINK_VALUE
 
 	; Not a SID LED, use normal register
 	call	MIOS_HLP_GetBitORMask	; get appr. OR mask (1 of 8)
 	andwf	INDF0, W		; AND this with the register specified in the table
 	rgoto	CS_MENU_LED_Update_StoreResult
 
-CS_MENU_LED_Update_UseTMP6
+CS_MENU_LED_Update_Use_CS_SID_LED_BLINK_VALUE
 	call	MIOS_HLP_GetBitORMask
-	andwf	TMP6, W			; Use TMP6 for SID LEDs
+	andwf	CS_SID_LED_BLINK_VALUE, W			; Use CS_SID_LED_BLINK_VALUE for SID LEDs
 
 CS_MENU_LED_Update_StoreResult
 	skpz				; LED value: 0 if result zero, 1 if result != zero
