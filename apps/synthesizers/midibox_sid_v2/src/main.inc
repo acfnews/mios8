@@ -242,7 +242,7 @@ USER_Tick
 	bcf	SID_STAT, SID_STAT_ENGINE_DISABLE_LEVEL0
 
 	;; SID led activity
-	;;clrf	SID_ACTIVITY_FLAGS
+	clrf	SID_ACTIVITY_FLAGS
 
 	;; ---[ update AOUTs channels and gates ]---
 	call	SID_EXT_Update
