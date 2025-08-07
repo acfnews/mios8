@@ -1288,5 +1288,3 @@ SID_PATCH_BUFFER_SHADOW	EQU	0x900	; ..0xbff
 
 ;; patch buffer of the MBSID engine, which is edited with the CS
 SID_EDIT_BUFFER		EQU	0xb00	; ..0xcff
-
-
