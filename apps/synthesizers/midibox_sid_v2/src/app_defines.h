@@ -139,9 +139,9 @@ CS_MENU_LABEL		EQU	0x057	; label ID of current menu page
 CS_MENU_LABEL_CTR	EQU	0x058	; counter for printing label piecewise
 CS_MENU_ENGINES         EQU     0x059   ; stored engine codes (2 bit for each SID)
 
-SID_ACTIVITY_FLAGS	EQU	0x05a	; 1 byte for 4 SIDs
+SID_ACTIVITY_FLAGS	EQU	0x05a	; SID value on midi note event
 CS_SID_LED_BLINK_VALUE	EQU	0x05b	; SID LED blink value on midi note event
-TMP7			EQU	0x05c	; FLAG number in DOUT loop
+CS_SID_LED_FLAG		EQU	0x05c	; FLAG number in DOUT loop for SID LED blink
 
 	;; free: 0x5d-0x5f
 

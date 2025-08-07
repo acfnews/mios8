@@ -186,9 +186,9 @@ CS_MENU_LED_Update_Loop
 	tblrd*+				; get flag-number
 	movf	TABLAT, W
 	; Check if this is a SID LED (flags 0..3 for SID LEDs)
-	movwf	TMP7
+	movwf	CS_SID_LED_FLAG
 	movlw	0x04
-	subwf	TMP7, W
+	subwf	CS_SID_LED_FLAG, W
 	bnc	CS_MENU_LED_Update_Use_CS_SID_LED_BLINK_VALUE
 
 	; Not a SID LED, use normal register
