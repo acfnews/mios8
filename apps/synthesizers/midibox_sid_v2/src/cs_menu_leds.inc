@@ -185,8 +185,22 @@ CS_MENU_LED_Update_Loop
 
 	tblrd*+				; get flag-number
 	movf	TABLAT, W
+	; Check if this is a SID LED (flags 0..3 for SID LEDs)
+	movwf	TMP7
+	movlw	0x04
+	subwf	TMP7, W
+	bnc	CS_MENU_LED_Update_UseTMP6
+
+	; Not a SID LED, use normal register
 	call	MIOS_HLP_GetBitORMask	; get appr. OR mask (1 of 8)
 	andwf	INDF0, W		; AND this with the register specified in the table
+	rgoto	CS_MENU_LED_Update_StoreResult
+
+CS_MENU_LED_Update_UseTMP6
+	call	MIOS_HLP_GetBitORMask
+	andwf	TMP6, W			; Use TMP6 for SID LEDs
+
+CS_MENU_LED_Update_StoreResult
 	skpz				; LED value: 0 if result zero, 1 if result != zero
 	movlw	0x01
 	movwf	MIOS_PARAMETER1		; store result in MIOS_PARAMETER1
@@ -199,6 +213,7 @@ CS_MENU_LED_Update_Loop
 	CALL_IFSET TABLAT, 7, ACCESS, J5_IO_PinSet		; or pin of J5 if bit #7 set (SR #0 in setup_*.asm)
 #endif
 	rgoto	CS_MENU_LED_Update_Loop	; next entry
+
 
 CS_MENU_LED_Update_End
 	return
