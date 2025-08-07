@@ -40,6 +40,7 @@
 #define ENABLE_PATCH_FIXING 0
 ;
 ;
+;
         ERRORLEVEL      -311    ; suppress "Operand of HIGH operator was larger than H'FFFF'"
 ;
 ;; ---[ MIOS header file ]---
