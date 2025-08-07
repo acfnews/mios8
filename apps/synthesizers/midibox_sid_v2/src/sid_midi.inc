@@ -81,6 +81,12 @@ SID_MIDI_NoteOn
 	movf	SID_MIDI_PARAMETER2, W, BANKED	; branch to NoteOff if velocity is zero
 	bz	SID_MIDI_NoteOff
 
+	;; debug ron
+	movlw   'N'                ; ASCII 'N' for Note event
+	call    MIOS_MIDI_TxBufferPut
+	movlw   0x0d               ; Carriage return (newline)
+	call    MIOS_MIDI_TxBufferPut
+
 	; Example: blink SID LED when Note On is received for SID n
 	; WREG contains SID number (0..3)
 	bsf	SID_ACTIVITY_FLAGS, WREG	; set activity flag for SID
