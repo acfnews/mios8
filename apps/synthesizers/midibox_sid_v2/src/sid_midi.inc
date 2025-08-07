@@ -81,6 +81,10 @@ SID_MIDI_NoteOn
 	movf	SID_MIDI_PARAMETER2, W, BANKED	; branch to NoteOff if velocity is zero
 	bz	SID_MIDI_NoteOff
 
+	; Example: blink SID LED when Note On is received for SID n
+	; WREG contains SID number (0..3)
+	bsf	SID_ACTIVITY_FLAGS, WREG	; set activity flag for SID
+
 	;; branch depending on engine
 	movff	SID_PATCH_BUFFER_SHADOW + SID_Ix_ENGINE, WREG
 	andlw	0x03

@@ -40,7 +40,6 @@
 #define ENABLE_PATCH_FIXING 0
 ;
 ;
-;
         ERRORLEVEL      -311    ; suppress "Operand of HIGH operator was larger than H'FFFF'"
 ;
 ;; ---[ MIOS header file ]---
@@ -241,6 +240,9 @@ USER_Init_NoCS
 USER_Tick
 	;; enable engine (only required after startup or after a SysEx/MBNet patch upload)
 	bcf	SID_STAT, SID_STAT_ENGINE_DISABLE_LEVEL0
+
+	;; SID led activity
+	;;clrf	SID_ACTIVITY_FLAGS
 
 	;; ---[ update AOUTs channels and gates ]---
 	call	SID_EXT_Update

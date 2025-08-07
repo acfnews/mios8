@@ -139,7 +139,9 @@ CS_MENU_LABEL		EQU	0x057	; label ID of current menu page
 CS_MENU_LABEL_CTR	EQU	0x058	; counter for printing label piecewise
 CS_MENU_ENGINES         EQU     0x059   ; stored engine codes (2 bit for each SID)
 
-	;; free: 0x5a-0x5f
+SID_ACTIVITY_FLAGS	EQU	0x05a	; 1 byte for 4 SIDs
+
+	;; free: 0x5b-0x5f
 
 ;; ==========================================================================
 ;; NOTE for PIC18F4685: 0x60-0x7f NOT directly accessible via ACCESS bank!
@@ -1286,3 +1288,5 @@ SID_PATCH_BUFFER_SHADOW	EQU	0x900	; ..0xbff
 
 ;; patch buffer of the MBSID engine, which is edited with the CS
 SID_EDIT_BUFFER		EQU	0xb00	; ..0xcff
+
+

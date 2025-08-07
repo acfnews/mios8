@@ -166,6 +166,11 @@ CS_MENU_LED_Update_LFO_Cont
 	btfsc	CS_MENU_SELECTED_ENV_CTRL, 1
 	bsf	TMP5, 7
 
+	;; SID led activity
+	movf	CS_MENU_SELECTED_SID_FLAGS, W
+	xorwf	SID_ACTIVITY_FLAGS, W	; XOR for blinking
+	movwf	CS_MENU_SELECTED_SID_FLAGS
+
 	;; go through the DOUT map
 	TABLE_ADDR CS_MENU_DOUT_TABLE
 CS_MENU_LED_Update_Loop
