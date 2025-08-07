@@ -81,11 +81,19 @@ SID_MIDI_NoteOn
 	movf	SID_MIDI_PARAMETER2, W, BANKED	; branch to NoteOff if velocity is zero
 	bz	SID_MIDI_NoteOff
 
-	;; debug ron
-	movlw   'N'                ; ASCII 'N' for Note event
+	;; debug ron, print text, note number, SID number and newline
+	movlw   'N'
 	call    MIOS_MIDI_TxBufferPut
-	movlw   0x0d               ; Carriage return (newline)
+	movf    SID_MIDI_PARAMETER1, W
 	call    MIOS_MIDI_TxBufferPut
+	movf    SID_ACTIVITY_FLAGS, WREG
+	call    MIOS_MIDI_TxBufferPut
+	movlw   0x0d
+	call    MIOS_MIDI_TxBufferPut
+
+	;; there is a warning: 
+	;; ./src/sid_midi.inc:89:Warning[202] Argument out of range. Least significant bits used. 4072 (0xfe8)
+	;; ./src/sid_midi.inc:96:Warning[202] Argument out of range. Least significant bits used. Bit{4072} > 7.
 
 	; Example: blink SID LED when Note On is received for SID n
 	; WREG contains SID number (0..3)
